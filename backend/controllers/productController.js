@@ -63,7 +63,7 @@ exports.deleteProduct = async (req, res, next) => {
   }
 };
 
-// get product details -admin
+// get product details 
 exports.getProductDetails = async (req, res, next) => {
   try {
     const product = await Product.findById(req.params.id);
@@ -72,22 +72,23 @@ exports.getProductDetails = async (req, res, next) => {
     }
     res.status(200).json({ success: true, product });
   } catch (error) {
-    // console.log(error)
-    // res.json({message:error.message})
+
     return next(new ErrorHandler(error.message, 400));
   } 
 };
 
 exports.getAllProducts = catchAsyncErrors(async (req, res,next) => {
   // return next(new ErrorHandler("Testing Error",501))
-  productsPerPage = 8;
+  productsPerPage = 3;
   totalProducts = await Product.countDocuments()
   const apiMethod = new ApiMethods(Product.find(), req.query)
     .searchProducts()
-    .filterCategory()
-    .pagination(productsPerPage);
-  const products = await apiMethod.query;
-  res.status(200).json({ success: true,totalProducts, products });
+    .filterCategory().pagination(productsPerPage)
+    
+  let products = await apiMethod.query;
+  // apiMethod.pagination(8)
+  
+  res.status(200).json({ success: true,totalProducts, products,productsPerPage });
 });
 
 
