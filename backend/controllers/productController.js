@@ -79,16 +79,22 @@ exports.getProductDetails = async (req, res, next) => {
 
 exports.getAllProducts = catchAsyncErrors(async (req, res,next) => {
   // return next(new ErrorHandler("Testing Error",501))
-  productsPerPage = 3;
+  productsPerPage = 8;
   totalProducts = await Product.countDocuments()
   const apiMethod = new ApiMethods(Product.find(), req.query)
     .searchProducts()
-    .filterCategory().pagination(productsPerPage)
+    .filterCategory()
+    .pagination(productsPerPage)
     
-  let products = await apiMethod.query;
-  // apiMethod.pagination(8)
+  // let products = await apiMethod.query;
+  // const products = await apiMethod.query;
+  // const filteredCount = products.length
+  // apiMethod.pagination(productsPerPage)
+  const products =await apiMethod.query;
+  let filteredCount = products.length
+
   
-  res.status(200).json({ success: true,totalProducts, products,productsPerPage });
+  res.status(200).json({ success: true,totalProducts, products,productsPerPage,filteredCount });
 });
 
 
