@@ -1,0 +1,30 @@
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    /* padding-bottom: 2vmax; */
+    background-color: coral;
+}
+
+.top-right{
+    padding: 2.4vmax;
+    display: flex;
+    flex-direction: row;
+}
+
+.top-right>a{
+    padding: 1vmax;
+    width: 1vmax;
+    height: 10px;
+    color: wheat;
+}
+.top-right>a:hover{
+    
+    color: orangered;
+    transform: scale(1.2);
+}
+
+NavLink>a:visited {
+    text-decoration: none;
+    
+  }

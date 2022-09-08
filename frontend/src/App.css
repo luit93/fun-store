@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+    scroll-behavior: smooth;
+}
+/*remove input ponters*/
+/* chrome,safari,edge,opera */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/*firefox */
+input[type='number']{
+    -moz-appearance:  textfield;
+}
+
+.green-color {
+    color: green !important;
+  }
+.red-color {
+    color: red !important;
+  }
+.blue-color {
+    color: aqua;
+}

@@ -1,0 +1,28 @@
+.loading{
+    width: 100vw;
+    height: 100vh;
+    background-color: aliceblue;
+    display: grid;
+    place-items: center;
+    max-width: 100%;
+}
+
+.loading > div{
+    width: 20vmax;
+    background-color: rgb(246, 79, 19);
+    height: 8vmax;
+    border-bottom: 5px solid rgb(61, 6, 109);
+    border-radius: 50%;
+    animation: loadSpin 1900ms linear infinite;
+    text-align: center;
+    color: wheat;
+    padding-top: 50px;
+    font: 900 "Roboto";
+    text-decoration: overline  wheat wavy ;
+}
+
+@keyframes loadSpin {
+    to{
+        transform: rotateZ(-360deg);
+    }
+}

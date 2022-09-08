@@ -1,0 +1,223 @@
+.profile-container{
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: whitesmoke;
+    /* position: fixed; */
+    top: 0%;
+    left: 0;
+}
+
+.profile-box{
+    background: linear-gradient(0.75turn, coral,   rgb(235, 127, 88));
+    width: 25vw;
+    height: 70vh;
+    box-sizing: border-box;
+    overflow: hidden;
+    color: wheat;
+}
+
+
+.toggle{
+    display: flex;
+    height: 3vmax;
+}
+.toggle> p{
+    /* color: black; */
+    font: 600 1vmax "Roboto";
+    transition:  all 0.5s;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 4vmax;
+}
+
+.toggle>p:hover{
+    /* background-color: rgb(235, 168, 233); */
+    background-color: wheat;
+    color: orangered;
+}
+
+.profile-box>div>button{
+    height: 7px;
+    background-color: wheat;
+    width: 50%;
+    border: none;
+    transition: all 0.5s;
+}
+.login-form,
+.register-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2vmax;
+    margin: auto;
+    justify-content: space-evenly;
+    height: 70%;
+    transition: all 0.5s;
+}
+
+.register-form{
+    transform: translateY(-100%) translateX(-100vmax);
+}
+
+.login-form>div,
+.register-form>div{
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+.login-form>div>input,
+.register-form>div>input{
+    padding: 1vmax 4vmax;
+    padding-right: 1vmax;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid wheat;
+    outline:none;
+    font: 300 1vmax ;
+    background-color: wheat;
+    color: coral;
+    
+}
+
+
+.login-form>div>svg,
+.register-form >div> svg{
+    position: absolute;
+    transform: translateX(0.9vmax);
+    font-size: 2.6vmax;
+    color: coral;
+}
+
+.login-form>a{
+    color: wheat;
+    text-decoration: none;
+    align-self: flex-end;
+    transition: all 0.5s;
+    font: 700 0.8vmax "Roboto";
+}
+
+.login-form>a:hover{
+    background-color: orangered;
+    color: wheat;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.219);
+
+}
+
+#register-img>img{
+    width: 2vmax;
+    border-radius: 100%;
+    /* padding: 5px; */
+    margin-right: 5px;
+    border: 1px solid ;
+    /* box-shadow: 0 3px 6px rgba(0,0,0,0.219); */
+
+}
+#register-img>input{
+    display: flex;
+   padding: 0;
+   /* padding-left: 2px; */
+}
+
+#register-img>input::file-selector-button{
+    cursor: pointer;
+    width: 100%;
+    z-index: 2;
+    height: 5vh;
+    margin: 0%;
+    border: none;
+    transition: all 0.5s;
+    padding: 0 1vmax;
+    background-color: coral;
+    color: wheat;
+}
+#register-img>input::file-selector-button:hover{
+    background-color: orangered;
+}
+.avatar-preview{
+    width: 3vmax;
+    border-radius: 100%;
+}
+
+.login-btn,
+.register-btn{
+    border: none;
+    background-color: coral;
+    color: wheat;
+    width: 100%;
+    padding: 0.8vmax;
+    cursor: pointer;
+    outline: none;
+    border-radius: 4px;
+    border: dashed;
+    transition: all 0.5s;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.219);
+}
+
+
+.login-btn:hover,
+.register-btn:hover{
+    background-color: orangered;
+    color: wheat;
+}
+
+.shift-right{
+    transform: translateX(100%);
+
+}
+.shift-neutral{
+    transform: translateX(0%);
+}
+.shift-left{
+    transform: translateX(-100%);
+
+}
+.shift-neutral-form{
+    transform: translateX(0%) translateY(-100%);
+
+}
+
+@media screen  and (max-width:700px){
+    /* .profile-box{
+        width: 50vw;
+        height: 60vh;
+    } */
+    .profile-container{
+        background-color: coral;
+    }
+    .profile-box{
+        width: 100vw;
+        height: 95vh;
+    }
+    .toggle{
+        height: 5vmax;
+    }
+    .toggle>p{
+        font: 300 1.5vmax "Roboto";
+        width: 100%;
+        height:6.6vmax;
+    }
+    .login-form,
+    .register-form{
+        padding: 5vmax;
+    }
+    .login-form>div>input,
+.register-form>div>input{
+    padding: 2.5vmax 5vmax;
+    font: 300 1.7vmax;
+}
+.login-form>div>svg,
+.register-form>div>svg{
+    font-size: 2.8vmax;
+}
+
+.login-form>a{
+    font: 500 1.8vmax "Roboto";
+}
+}

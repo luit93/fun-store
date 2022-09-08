@@ -1,0 +1,70 @@
+footer {
+    /* margin-top: 8vmax; */
+    padding-top: 2.4vmax;
+    background-color:coral;
+    color: rgb(9, 9, 8);
+    display: flex;
+    /* max-height: 9vmax; */
+    /* bottom: 0; */
+}
+
+.leftFooter {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.leftFooter >p {
+    text-align: center;
+    font-size: 1.4vmax;
+
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.leftFooter > img{
+    width: 10vmax;
+    margin: 1vmax;
+    cursor: pointer;
+}
+
+.midFooter{
+    width: 60%;
+    text-align: center;
+}
+.midFooter> h1{
+    font-size: 3.9vmax;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: hsl(15, 98%, 51%);
+    text-decoration: underline overline wavy 5px ;
+     
+}
+.midFooter> p{
+    max-width: 60%;
+    margin: 1vmax auto;
+    font-size: 1.4vmax;
+}
+.rightFooter{
+    width:20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.rightFooter> h4{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1.5vmax;
+    color: rgb(29, 19, 10);
+text-decoration: underline overline wavy 5px ;
+
+}
+.rightFooter> a{
+   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1.3vmax;
+    color: #0f0c08d2;
+text-decoration:   3px ;
+margin:0.5vmax;
+transition: all 0.5s;
+}
+
+.rightFooter> a:hover{
+    color: antiquewhite;
+    text-decoration: underline wavy   3px ;
+}

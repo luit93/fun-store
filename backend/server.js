@@ -15,7 +15,7 @@ process.on("uncaughtException",(err)=>{
 })
 //connect to db
 connectDB()
-
+console.log("first")
 
 const server = app.listen(process.env.PORT, ()=>{
     console.log(`server running on http://localhost:${process.env.PORT}`)
