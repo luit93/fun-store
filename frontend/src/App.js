@@ -10,21 +10,33 @@ import ProductDetails from "./components/product/ProductDetails";
 import Products from "./components/product/Products";
 import Search from "./components/product/Search"
 import UserProfile from "./components/users/UserProfile";
+import UserOptions from "./components/layout/header/UserOptions"
 // import Loader from "./components/layout/loader/Loader";
 // import Layout from "./components/layout/Layout";
-
+import store from "./store"
+import { getUserDetails } from "./actions/accountAction";
+import { useSelector } from "react-redux";
 function App() {
+
+  const {user,isAuth}= useSelector((state)=>state.account)
+  // console.log(user,isAuth)
+  // console.log("first",user.user)
   React.useEffect(() => {
+    store.dispatch(getUserDetails())
     WebFont.load({
       google: {
         families: ["Roboto", "Droid Sans", "Chilanka"],
       },
     });
-  }, []);
+ 
+  }, [store]);
   return (
    
       <Router>
        <Header/>
+
+      {isAuth && <UserOptions user={user} />}
+
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route exact path="/product/:id" element={<ProductDetails />} />
@@ -32,6 +44,7 @@ function App() {
           <Route path="/products/:keyword" element={<Products />} />
           <Route path="/search" element={<Search />} />
           <Route path="/login" element={<UserProfile />} />
+          
           
           {/* <Route path="/loading" element={<Loader />} /> */}
 

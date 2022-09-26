@@ -1,5 +1,6 @@
-import {fetchLoginLoading,fetchLoginSuccess,fetchLoginFail,clearErrors,fetchRegisterLoading,fetchRegisterSuccess,fetchRegisterFail} from "../reducers/accountSlice"
-import {accountLoginApi,accountRegisterApi} from "../api/accountApi"
+import {fetchLoginLoading,fetchLoginSuccess,fetchLoginFail,clearErrors,fetchRegisterLoading,fetchRegisterSuccess,fetchRegisterFail,getUserRequest,getUserSuccess,getUserFail,logoutSuccess,
+    logoutFail} from "../reducers/accountSlice"
+import {accountLoginApi,accountRegisterApi,getUserDetailsApi,logoutApi} from "../api/accountApi"
 
 export const accountLogin=(email,password)=>async(dispatch)=>{
     dispatch(fetchLoginLoading())
@@ -19,6 +20,25 @@ export const accountRegister=(accountData)=>async(dispatch)=>{
         
     } catch (error) {
         dispatch(fetchRegisterFail(error.message))
+    }
+}
+export const getUserDetails=()=>async(dispatch)=>{
+    dispatch(getUserRequest())
+    try {
+        const result = await getUserDetailsApi()
+        dispatch(getUserSuccess(result.data))
+        
+    } catch (error) {
+        dispatch(getUserFail(error.message))
+    }
+}
+
+export const accountLogout=()=>async(dispatch)=>{
+    try {
+        const result = await logoutApi() 
+        dispatch(logoutSuccess(result))
+    } catch (error) {
+        dispatch(logoutFail(error.message))
     }
 }
 

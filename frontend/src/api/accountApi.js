@@ -25,3 +25,31 @@ export const accountRegisterApi =(accountData)=>{
         }
     })
 }
+
+export const getUserDetailsApi=()=>{
+    return new Promise(async (resolve,reject)=>{
+        try {
+            const link="http://localhost:9000/api/v1/me"
+            const result = await axios.get(link)
+            resolve(result)
+        } catch (error) {
+            reject(error)
+        }
+    })
+}
+
+//error in logging out
+
+export const logoutApi=()=>{
+    const link="http://localhost:9000/api/v1/logout"
+   axios.get(link)
+    // return new Promise(async (resolve,reject)=>{
+    //     try {
+    //         const link="http://localhost:9000/api/v1/logout"
+    //          await axios.get(link)
+    //          resolve()
+    //     } catch (error) {
+    //         reject(error)
+    //     }
+    // })
+}

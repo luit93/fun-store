@@ -3,17 +3,23 @@ const catchAsyncErrors = require("../middleware/catchAsyncErrors");
 const Account = require("../models/AccountModel");
 const sendToken = require("../utils/jwtTokenSender");
 const sendEmail = require("../utils/sendEmail");
-const crypto = require('crypto')
+const cloudinary = require("cloudinary");
+const crypto = require("crypto");
 //register new user
 exports.registerAccount = catchAsyncErrors(async (req, res, next) => {
+  const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
+    folder: "avatars",
+    width: 150,
+    crop: "scale",
+  });
   const { name, email, password } = req.body;
   const account = await Account.create({
     name,
     email,
     password,
     avatar: {
-      public_id: "public id",
-      url: "avatar url",
+      public_id: myCloud.public_id,
+      url: myCloud.secure_url,
     },
   });
 
@@ -66,12 +72,9 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
   const resetToken = await account.getResetPasswordToken();
   await account.save({ validateBeforeSave: false });
 
-
- const resetPasswordUrl = `${req.protocol}://${req.get(
+  const resetPasswordUrl = `${req.protocol}://${req.get(
     "host"
   )}/api/v1/password/reset/${resetToken}`;
-
-
 
   const message = `Your password reset link is :- \n\n ${resetPasswordUrl} \n\nIf you have not requested this email then, please ignore it.`;
   try {
@@ -82,7 +85,8 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
     });
     res.status(200).json({
       success: true,
-      message: `Password reset link has been sent to ${account.email}`,resetPasswordUrl
+      message: `Password reset link has been sent to ${account.email}`,
+      resetPasswordUrl,
     });
   } catch (error) {
     account.resetPasswordToken = undefined;
@@ -121,15 +125,16 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
 });
 
 //get account details
-exports.getAccountdetails = catchAsyncErrors(async (req,res,next)=>{
-  const account = await Account.findById(req.user.id)
+exports.getAccountdetails = catchAsyncErrors(async (req, res, next) => {
+  const account = await Account.findById(req.user.id);
   res.status(200).json({
-    success:true,account
-  })
-})
+    success: true,
+    account,
+  });
+});
 //update password
-exports.updatePassword = catchAsyncErrors(async (req,res,next)=>{
-  const account = await Account.findById(req.user.id).select('+password')
+exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
+  const account = await Account.findById(req.user.id).select("+password");
   const passwordValid = await account.comparePassword(req.body.oldPassword);
   if (!passwordValid) {
     return next(new ErrorHandler("invalid old password", 400));
@@ -137,67 +142,73 @@ exports.updatePassword = catchAsyncErrors(async (req,res,next)=>{
   if (req.body.newPassword !== req.body.confirmPassword) {
     return next(new ErrorHandler("The passwords don't match", 400));
   }
-  account.password= req.body.newPassword
-  await account.save()
+  account.password = req.body.newPassword;
+  await account.save();
 
- sendToken(account,200,res)
-})
+  sendToken(account, 200, res);
+});
 //update account details
-exports.updateAccountDetails = catchAsyncErrors(async (req,res,next)=>{
+exports.updateAccountDetails = catchAsyncErrors(async (req, res, next) => {
   const updateData = {
-    name:req.body.name,
-    email:req.body.email,
-  }
-  const account = await Account.findByIdAndUpdate(req.user.id,updateData,{
-    new:true
-  })
+    name: req.body.name,
+    email: req.body.email,
+  };
+  const account = await Account.findByIdAndUpdate(req.user.id, updateData, {
+    new: true,
+  });
 
- res.status(200).json({success:true})
-})
-
+  res.status(200).json({ success: true });
+});
 
 //get all user accounts -- admin
-exports.getAllAccounts = catchAsyncErrors( async(req,res,next)=>{
-  const accounts = await Account.find()
+exports.getAllAccounts = catchAsyncErrors(async (req, res, next) => {
+  const accounts = await Account.find();
   return res.status(200).json({
-    success:true, accounts
-  })
-})
-
-
+    success: true,
+    accounts,
+  });
+});
 
 //get single user account -- admin
-exports.getSingleAccount = catchAsyncErrors( async(req,res,next)=>{
-  const account = await Account.findById(req.params.id)
-  if(!account){return next(new ErrorHandler(`No account with id:${req.params.id} found`,404))}
+exports.getSingleAccount = catchAsyncErrors(async (req, res, next) => {
+  const account = await Account.findById(req.params.id);
+  if (!account) {
+    return next(
+      new ErrorHandler(`No account with id:${req.params.id} found`, 404)
+    );
+  }
 
   res.status(200).json({
-    success:true, account
-  })
-
-})
+    success: true,
+    account,
+  });
+});
 
 //update account role -admin
-exports.updateAccountRole = catchAsyncErrors(async (req,res,next)=>{
+exports.updateAccountRole = catchAsyncErrors(async (req, res, next) => {
   const updateData = {
-    name:req.body.name,
-    email:req.body.email,
-    role: req.body.role
-  }
-  const account = await Account.findByIdAndUpdate(req.params.id,updateData,{
-    new:true
-  })
+    name: req.body.name,
+    email: req.body.email,
+    role: req.body.role,
+  };
+  const account = await Account.findByIdAndUpdate(req.params.id, updateData, {
+    new: true,
+  });
 
- res.status(200).json({success:true})
-})
+  res.status(200).json({ success: true });
+});
 //delete account -admin
-exports.deleteAccount = catchAsyncErrors(async (req,res,next)=>{
-
-  const account = await Account.findById(req.params.id)
-  if(!account){
-    return next(new ErrorHandler`User does not exist with Id: ${req.params.id}`, 400)
+exports.deleteAccount = catchAsyncErrors(async (req, res, next) => {
+  const account = await Account.findById(req.params.id);
+  if (!account) {
+    return next(
+      new ErrorHandler`User does not exist with Id: ${req.params.id}`(),
+      400
+    );
   }
-  await account.remove()
+  await account.remove();
 
- res.status(200).json({success:true, message:"Account successfully deleted"})
-})
+  res
+    .status(200)
+    .json({ success: true, message: "Account successfully deleted" });
+});

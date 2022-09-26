@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { NavLink } from 'react-router-dom'
 import ReactNavbar from "overlay-navbar/dist/lib/ReactNavbar"
 import logo from "../../../images/logo.png"
@@ -54,7 +54,7 @@ const options={
 const Header = () => {
   return (
     <div className="header">
-      <ReactNavbar className="navbar"  {...options}/> 
+     <div><ReactNavbar className="navbar"  {...options}/> </div>
       <div className='top-right'>
         <NavLink to={`/login`} ><div><BiUser/></div></NavLink>
         <NavLink to={`/cart`} ><div><BiCartAlt/></div></NavLink>
