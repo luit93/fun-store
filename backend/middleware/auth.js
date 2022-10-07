@@ -4,7 +4,7 @@ const Account = require("../models/AccountModel");
 const ErrorHandler = require("../utils/errorHandler");
 exports.isUserAuth = catchAsyncErrors(async (req, res, next) => {
   const jwtToken = req.cookies.token;
-
+  
   if (!jwtToken) {
     return next(new ErrorHandler("Please Login to access this resource", 401));
   }
@@ -13,6 +13,7 @@ exports.isUserAuth = catchAsyncErrors(async (req, res, next) => {
   const decodedData = jwt.verify(jwtToken, process.env.JWT_SECRET);
 
   req.user = await Account.findById(decodedData.id);
+  console.log(req.user)
   next();
 });
 

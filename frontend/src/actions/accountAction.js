@@ -38,7 +38,8 @@ export const accountLogout=()=>async(dispatch)=>{
         const result = await logoutApi() 
         dispatch(logoutSuccess(result))
     } catch (error) {
-        dispatch(logoutFail(error.message))
+        console.log(error)
+        dispatch(logoutFail(error))
     }
 }
 

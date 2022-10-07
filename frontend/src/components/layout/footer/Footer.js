@@ -13,7 +13,7 @@ const Footer = () => {
       </div>
 
       <div className="midFooter">
-        <h1>LUIT STORE</h1>
+        <h1>LUIT'S FUN STORE</h1>
 
         {/* <p> 2022 &copy; Luit</p> */}
       </div>

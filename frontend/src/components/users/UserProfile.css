@@ -1,223 +1,126 @@
-.profile-container{
+.profile-container {
+    display: flex;
     width: 100vw;
     height: 100vh;
-    max-width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: whitesmoke;
-    /* position: fixed; */
     top: 0%;
-    left: 0;
+    max-width: 100%;
+    left: 0%;
+    /* position: fixed; */
+    background-color: aliceblue;
 }
 
-.profile-box{
-    background: linear-gradient(0.75turn, coral,   rgb(235, 127, 88));
-    width: 25vw;
-    height: 70vh;
-    box-sizing: border-box;
-    overflow: hidden;
-    color: wheat;
+.profile-container > div{
+display: flex;
+height: 100vh;
+width: 100vw;
+max-width: 100%;
+flex-direction: column;
+justify-content: center;
+align-items: center;
 }
 
 
-.toggle{
-    display: flex;
-    height: 3vmax;
+.profile-container > div:first-child>h1{
+    color: rgb(34, 19, 14);
+    font: 500 2.2vmax "Roboto";
+    transform: translateX(-10vmax) translateY(-2vmax);
 }
-.toggle> p{
-    /* color: black; */
-    font: 600 1vmax "Roboto";
-    transition:  all 0.5s;
-    cursor: pointer;
-    display: grid;
-    place-items: center;
-    width: 100%;
-    height: 4vmax;
-}
-
-.toggle>p:hover{
-    /* background-color: rgb(235, 168, 233); */
-    background-color: wheat;
-    color: orangered;
-}
-
-.profile-box>div>button{
-    height: 7px;
-    background-color: wheat;
-    width: 50%;
-    border: none;
+.profile-container > div:first-child>img{
+    width: 20vmax;
+    border: coral 2px solid;
+    border-radius: 100%;
     transition: all 0.5s;
 }
-.login-form,
-.register-form{
+.profile-container > div:first-child>img:hover{
+transform: scale(1.025);
+}
+.profile-container > div:first-child>a{
+    border: none;
+    background-color: orangered;
+    font: 500 2vmax "Roboto";
+    color: white;
+    text-decoration: none;
+    padding: 0.5vmax;
+    width: 30%;
+    margin: 4vmax;
+    text-align: center;
+    transition: all 0.5s;
+}
+
+.profile-container > div:first-child>a:hover{
+color: antiquewhite;
+background-color: coral;
+transform: scale(1.02);
+
+}
+
+.profile-container > div:last-child{
+    justify-content: space-evenly;
+    box-sizing: border-box;
+    align-items: flex-start;
+    padding: 5vmax;
+}
+.profile-container > div:last-child> div> h4{
+    font: 500 1.7vmax "Roboto";
+}
+
+.profile-container > div:last-child>div>p{
+    font: 500 1.5vmax cursive;
+    margin: 0.2vmax;
+}
+.profile-container > div:last-child> div:last-child {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 2vmax;
-    margin: auto;
-    justify-content: space-evenly;
-    height: 70%;
-    transition: all 0.5s;
+    width: 60%;
 }
-
-.register-form{
-    transform: translateY(-100%) translateX(-100vmax);
-}
-
-.login-form>div,
-.register-form>div{
-    display: flex;
-    width: 100%;
-    align-items: center;
-}
-.login-form>div>input,
-.register-form>div>input{
-    padding: 1vmax 4vmax;
-    padding-right: 1vmax;
-    width: 100%;
-    box-sizing: border-box;
-    border-radius: 4px;
-    border: 1px solid wheat;
-    outline:none;
-    font: 300 1vmax ;
-    background-color: wheat;
-    color: coral;
-    
-}
-
-
-.login-form>div>svg,
-.register-form >div> svg{
-    position: absolute;
-    transform: translateX(0.9vmax);
-    font-size: 2.6vmax;
-    color: coral;
-}
-
-.login-form>a{
-    color: wheat;
+.profile-container > div:last-child> div:last-child>a{
+    border: none;
+    background-color: black;
+    font: 500 1.3vmax "Roboto";
+    color: white;
     text-decoration: none;
-    align-self: flex-end;
+    padding: 0.5vmax;
+    width: 30%;
+    margin: 1vmax 0;
+    text-align: center;
     transition: all 0.5s;
-    font: 700 0.8vmax "Roboto";
+}
+.profile-container > div:last-child> div:last-child>a:hover{
+    background-color: rgb(57, 48, 78);
+    transform: scale(1.1);
 }
 
-.login-form>a:hover{
-    background-color: orangered;
-    color: wheat;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.219);
-
-}
-
-#register-img>img{
-    width: 2vmax;
-    border-radius: 100%;
-    /* padding: 5px; */
-    margin-right: 5px;
-    border: 1px solid ;
-    /* box-shadow: 0 3px 6px rgba(0,0,0,0.219); */
-
-}
-#register-img>input{
-    display: flex;
-   padding: 0;
-   /* padding-left: 2px; */
-}
-
-#register-img>input::file-selector-button{
-    cursor: pointer;
-    width: 100%;
-    z-index: 2;
-    height: 5vh;
-    margin: 0%;
-    border: none;
-    transition: all 0.5s;
-    padding: 0 1vmax;
-    background-color: coral;
-    color: wheat;
-}
-#register-img>input::file-selector-button:hover{
-    background-color: orangered;
-}
-.avatar-preview{
-    width: 3vmax;
-    border-radius: 100%;
-}
-
-.login-btn,
-.register-btn{
-    border: none;
-    background-color: coral;
-    color: wheat;
-    width: 100%;
-    padding: 0.8vmax;
-    cursor: pointer;
-    outline: none;
-    border-radius: 4px;
-    border: 0.2px dashed;
-    transition: all 0.5s;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.219);
-}
-
-
-.login-btn:hover,
-.register-btn:hover{
-    background-color: orangered;
-    color: wheat;
-}
-
-.shift-right{
-    transform: translateX(100%);
-
-}
-.shift-neutral{
-    transform: translateX(0%);
-}
-.shift-left{
-    transform: translateX(-100%);
-
-}
-.shift-neutral-form{
-    transform: translateX(0%) translateY(-100%);
-
-}
-
-@media screen  and (max-width:700px){
-    /* .profile-box{
-        width: 50vw;
-        height: 60vh;
-    } */
+@media screen and (max-width:600px) {
     .profile-container{
-        background-color: coral;
+        flex-direction: column;
     }
-    .profile-box{
-        width: 100vw;
-        height: 95vh;
+    .profile-container > div:first-child>h1{
+        font: 500 2.5vmax "Roboto";
+        transform: translateY(-2vmax);
     }
-    .toggle{
-        height: 5vmax;
+    .profile-container > div:first-child>a{
+        font: 500 2vmax "Roboto";
+        padding: 1vmax;
     }
-    .toggle>p{
-        font: 300 1.5vmax "Roboto";
-        width: 100%;
-        height:6.6vmax;
+    .profile-container>div:last-child{
+        text-align: center;
+        align-items: center;
     }
-    .login-form,
-    .register-form{
-        padding: 5vmax;
-    }
-    .login-form>div>input,
-.register-form>div>input{
-    padding: 2.5vmax 5vmax;
-    font: 300 1.7vmax;
-}
-.login-form>div>svg,
-.register-form>div>svg{
-    font-size: 2.8vmax;
-}
+    .profile-container>div:last-child>div>h4{
+        font: 500 2.5vmax "Roboto";
 
-.login-form>a{
-    font: 500 1.8vmax "Roboto";
-}
+    }
+    .profile-container>div:last-child>div>p{
+        font: 500 2.5vmax cursive;
+        margin: 0.5vmax 0;
+
+    }
+    .profile-container>div:last-child>div:last-child{
+        align-items: center;
+    }
+    .profile-container>div:last-child>div:last-child>a{
+        padding: 2vmax;
+        margin: 2vmax 0;
+        font: 500 1.8vmax "Roboto"
+    }
 }

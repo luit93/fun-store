@@ -51,7 +51,7 @@ footer {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 1.5vmax;
     color: rgb(29, 19, 10);
-text-decoration: underline overline wavy 5px ;
+text-decoration:  5px ;
 
 }
 .rightFooter> a{
@@ -65,5 +65,5 @@ transition: all 0.5s;
 
 .rightFooter> a:hover{
     color: antiquewhite;
-    text-decoration: underline wavy   3px ;
+    text-decoration:    5px ;
 }

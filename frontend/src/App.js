@@ -9,13 +9,15 @@ import Home from "./components/home/Home.js";
 import ProductDetails from "./components/product/ProductDetails";
 import Products from "./components/product/Products";
 import Search from "./components/product/Search"
-import UserProfile from "./components/users/UserProfile";
+import UserEntry from "./components/users/UserEntry";
 import UserOptions from "./components/layout/header/UserOptions"
 // import Loader from "./components/layout/loader/Loader";
 // import Layout from "./components/layout/Layout";
 import store from "./store"
 import { getUserDetails } from "./actions/accountAction";
 import { useSelector } from "react-redux";
+import UserProfile from "./components/users/UserProfile";
+import PrivateRoute from "./components/route/PrivateRoute";
 function App() {
 
   const {user,isAuth}= useSelector((state)=>state.account)
@@ -29,7 +31,7 @@ function App() {
       },
     });
  
-  }, [store]);
+  }, []);
   return (
    
       <Router>
@@ -43,7 +45,12 @@ function App() {
           <Route exact path="/products" element={<Products />} />
           <Route path="/products/:keyword" element={<Products />} />
           <Route path="/search" element={<Search />} />
-          <Route path="/login" element={<UserProfile />} />
+          <Route path="/login" element={<UserEntry />} />
+          {/* <Route path="/profile" element={<UserProfile />} /> */}
+          <Route exact path="/profile" element={<PrivateRoute/>}>
+          <Route path="/profile" element={<UserProfile />} />
+          </Route>
+          
           
           
           {/* <Route path="/loading" element={<Loader />} /> */}

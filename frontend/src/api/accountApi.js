@@ -42,11 +42,11 @@ export const getUserDetailsApi=()=>{
 
 export const logoutApi=()=>{
     const link="http://localhost:9000/api/v1/logout"
-   axios.get(link)
+    axios.get(link)
     // return new Promise(async (resolve,reject)=>{
     //     try {
     //         const link="http://localhost:9000/api/v1/logout"
-    //          await axios.get(link)
+    //        await axios.get(link)
     //          resolve()
     //     } catch (error) {
     //         reject(error)

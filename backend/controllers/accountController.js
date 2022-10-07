@@ -23,7 +23,7 @@ exports.registerAccount = catchAsyncErrors(async (req, res, next) => {
     },
   });
 
-  const jwtToken = account.getJWTToken();
+ 
 
   sendToken(account, 201, res);
 });
@@ -44,7 +44,7 @@ exports.loginAccount = catchAsyncErrors(async (req, res, next) => {
     return next(new ErrorHandler("invalid email or password", 401));
   }
 
-  const jwtToken = account.getJWTToken();
+
 
   sendToken(account, 200, res);
 });
