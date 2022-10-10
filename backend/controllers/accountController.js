@@ -30,7 +30,8 @@ exports.registerAccount = catchAsyncErrors(async (req, res, next) => {
 
 //LOGIN
 exports.loginAccount = catchAsyncErrors(async (req, res, next) => {
-  const { email, password } = req.body;
+  try {
+    const { email, password } = req.body;
   if (!email || !password) {
     return next(new ErrorHandler("Please enter email and password", 400));
   }
@@ -47,6 +48,11 @@ exports.loginAccount = catchAsyncErrors(async (req, res, next) => {
 
 
   sendToken(account, 200, res);
+  } catch (error) {
+    console.log(error)
+    res.status(500).send("Server error")
+  }
+  
 });
 
 //LOGOUT

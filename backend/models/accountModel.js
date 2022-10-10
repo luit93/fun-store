@@ -45,6 +45,7 @@ const AccountSchema = new mongoose.Schema({
 })
 
 
+
 //hashing password
 AccountSchema.pre("save", async function (next) {
   if (!this.isModified("password")) {
@@ -54,11 +55,16 @@ AccountSchema.pre("save", async function (next) {
   this.password = await bcrypt.hash(this.password, 10);
 });
 
-//JWT tokens
+//JWT access token
 AccountSchema.methods.getJWTToken = function(){
   return jwt.sign({id:this._id},process.env.JWT_SECRET,{expiresIn:process.env.JWT_EXPIRE})
 }
-
+//refresh token
+AccountSchema.methods.getRefreshToken = async function (_id){
+  const refreshToken = jwt.sign({_id:this._id},process.env.JWT_REFRESH_TK,{expiresIn:process.env.JWT_REFRESH_EXPIRY})
+  // await storeRefreshJWT(_id,refreshToken)
+  return Promise.resolve(refreshToken); 
+}
 //cpmpare password
 AccountSchema.methods.comparePassword =  async function(password){
   return await bcrypt.compare(password,this.password )
@@ -75,4 +81,5 @@ AccountSchema.methods.getResetPasswordToken = async function(){
   return resetToken
 }
 
-module.exports= mongoose.model("Account",AccountSchema)
+
+module.exports= mongoose.models.Account || mongoose.model("Account" ,AccountSchema)

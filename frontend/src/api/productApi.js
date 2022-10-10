@@ -23,9 +23,9 @@ export const getProductDetails =(id)=>{
         try {
             const result = await axios.get(
                 `http://localhost:9000/api/v1/product/${id}`,
-                // {headers:{
-                //     Authorization:sessionStorage.getItem('accessJWT')
-                // }}
+                {headers:{
+                    Authorization:sessionStorage.getItem('accessJWT')
+                }}
             )
             resolve(result)
         } catch (error) {

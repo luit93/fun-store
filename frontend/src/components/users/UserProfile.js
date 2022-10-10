@@ -25,7 +25,7 @@ const UserPage = () => {
     <div>
         <h1>My Profile</h1>
         <img src={accountUser.avatar.url} alt={accountUser.name}/>
-        <NavLink to={`/me/update`}>Edit</NavLink>
+        <NavLink to={`/me/update`}>Edit Profile</NavLink>
     </div>
 
     <div>
@@ -36,7 +36,7 @@ const UserPage = () => {
         <NavLink to={`/password/update`}>Change Password</NavLink>
         </div>
     </div>
-    
+
     </div>
 </Fragment>
     }</Fragment>

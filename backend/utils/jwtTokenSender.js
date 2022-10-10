@@ -1,6 +1,9 @@
 //saves jwt in cookie
 const sendToken=(user,statusCode,res)=>{
     const token = user.getJWTToken()
+    const refreshToken= user.getRefreshToken(user._id)
+// console.log('token=',token)
+
     //cookie options
     const cookieOptions ={
 
@@ -13,7 +16,8 @@ const sendToken=(user,statusCode,res)=>{
 res.status(statusCode).cookie("token",token,cookieOptions).json({
     success:true,
     user,
-    token
+    token,
+    refreshToken
 })
 
 

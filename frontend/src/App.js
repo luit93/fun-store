@@ -24,14 +24,14 @@ function App() {
   // console.log(user,isAuth)
   // console.log("first",user.user)
   React.useEffect(() => {
-    store.dispatch(getUserDetails())
+    // if(user){store.dispatch(getUserDetails())}
     WebFont.load({
       google: {
         families: ["Roboto", "Droid Sans", "Chilanka"],
       },
     });
  
-  }, []);
+  }, [user]);
   return (
    
       <Router>

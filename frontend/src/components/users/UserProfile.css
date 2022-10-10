@@ -37,7 +37,7 @@ transform: scale(1.025);
 .profile-container > div:first-child>a{
     border: none;
     background-color: orangered;
-    font: 500 2vmax "Roboto";
+    font: 500 1.5vmax "Roboto";
     color: white;
     text-decoration: none;
     padding: 0.5vmax;

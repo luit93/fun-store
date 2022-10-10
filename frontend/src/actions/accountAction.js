@@ -6,6 +6,10 @@ export const accountLogin=(email,password)=>async(dispatch)=>{
     dispatch(fetchLoginLoading())
     try {
         const result = await accountLoginApi(email,password)
+// 
+        sessionStorage.setItem('accessJWT', result.data.token)
+        localStorage.setItem('refreshJWT',result.data.refreshToken)
+
         dispatch(fetchLoginSuccess(result.data))
         
     } catch (error) {
